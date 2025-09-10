@@ -1,5 +1,4 @@
 import React from "react";
-import Modal from "./Modal";
 
 const App = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -9,7 +8,7 @@ const App = () => {
     e.stopPropagation();
     const data = {
       username: e.target.username.value,
-      email: e.target.email.value,  
+      email: e.target.email.value,
       phone: e.target.phone.value,
       dob: e.target.dob.value,
     };
@@ -29,19 +28,18 @@ const App = () => {
   };
 
   return (
-    <div className="modal" onClick={() => setIsOpen(false)}>
+    <div className="modal-content" onClick={() => setIsOpen(false)}>
       <div className="modal-header">
         <h1>User Details Modal</h1>
         <button className="openFormBtn" onClick={(e) => {
-          setIsOpen(true);
           e.stopPropagation();
+          setIsOpen(true);
         }}>
           Open Form
         </button>
       </div>
       {isOpen && (
-        // <div className="modal-content">
-        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <div className="modal">
           <form onSubmit={(e) => handleSubmit(e)} onClick={(e) => e.stopPropagation()}>
             <h1>Fill Details</h1>
             <label htmlFor="username">Username:</label>
@@ -53,11 +51,10 @@ const App = () => {
             <label htmlFor="dob">Date of Birth:</label>
             <input for="dob" type="date" id="dob" required />
             <button className="submit-button" type="submit">
-              Submit  
+              Submit
             </button>
           </form>
-        </Modal>
-        // </div>
+        </div>
       )}
     </div>
   );
